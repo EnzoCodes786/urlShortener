@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const sendUrlRoutes = require('./routes/sendUrl.routes')
+const redirectRoutes = require(`./routes/redirect.routes`)
 app.use(express.json())
 app.use(cors({
     credentials: true,
@@ -11,5 +12,6 @@ app.use(cors({
 }));
 
 app.use('/api/urls',sendUrlRoutes);
+app.use('/api/urls',redirectRoutes);
 
 module.exports = app
