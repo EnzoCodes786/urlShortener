@@ -13,7 +13,7 @@ async function sendUrl(req,res) {
         VALUES(?,?)
         `,[longUrl,shortUrl])
     res.json({
-        newLink : `http://localhost:5000/api/url/${shortUrl}`,
+        newLink :`http://localhost:5000/api/urls/${shortUrl}`,
         short : shortUrl
     })
 }
