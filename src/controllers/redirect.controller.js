@@ -7,7 +7,7 @@ async function redirectLink(req, res) {
         SELECT * FROM hash_table 
         WHERE short_url = (?)
         `,
-    [userUrl]
+    [userUrl],
   );
   if (rows.length === 0) {
     res.status(404).json({
@@ -16,7 +16,10 @@ async function redirectLink(req, res) {
   }
 
   const longUrl = rows[0].long_url;
-  
+  await pool.query(
+    "UPDATE hash_table SET click_count = click_count + 1 WHERE short_url = ?",
+    [userUrl],
+  );
   res.redirect(longUrl);
 }
 
